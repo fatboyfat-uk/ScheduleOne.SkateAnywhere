@@ -17,6 +17,7 @@
 */
 
 using MelonLoader;
+using UnityEngine.SceneManagement;
 
 namespace ScheduleOne.SkateAnywhere.Mono
 {
@@ -25,6 +26,17 @@ namespace ScheduleOne.SkateAnywhere.Mono
         public override void OnInitializeMelon()
         {
             LoggerInstance.Msg("Skate Anywhere Mod Initialized");
+        }
+
+        public override void OnGUI()
+        {
+            bool gameStarted = SceneManager.GetActiveScene() != null && SceneManager.GetActiveScene().name == "Main";
+            if (!gameStarted)
+            {
+                return;
+            }
+
+            SkateboardSpeedo.OnGUI();
         }
     }
 }
